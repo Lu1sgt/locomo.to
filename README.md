@@ -1,6 +1,6 @@
 # chillproject
 
-<H1> TO:DO </H1>
-* MVC
-* FrontEnd
-* Backend
+## TO:DO Week1
+[ ] Model
+[ ] View
+[ ] Controller
