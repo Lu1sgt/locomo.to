@@ -1,6 +1,6 @@
 # chillproject
 
 ## TO:DO Week1
-[ ] Model
-[ ] View
-[ ] Controller
+- [ ] Model
+- [ ] View
+- [ ] Controller
