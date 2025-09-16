@@ -20,4 +20,4 @@ require_once '../app/init.php';
  * Instance of App(), Internal logic is inside of 
  * App object
  */
-$app = new App();
+$app = new Application();
