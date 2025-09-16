@@ -7,3 +7,7 @@ Web based Reddit Style (Not really) automotive blog posting site
 - [ ] Model
 - [ ] View
 - [ ] Controller
+
+## TO:USE 
+cd on the project's root directory, then use php from there on.
+
