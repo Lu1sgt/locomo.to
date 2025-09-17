@@ -2,25 +2,41 @@
 
 class Application 
 {
-    private string $controller = 'home';
+    private $controller = 'home';
     private string $method = 'index';
     private array $params = [];
 
-    public function __construct() 
+    /**
+     * Not used yet. 
+     * @var  
+     */
+    private $working_directory;
+
+    /**
+     * $db is a singleton. This is to prevent
+     * ghost database objects that might lead to errors.
+     * @var Database_Interface
+     */
+    public static Database_Interface $db;
+
+    public function __construct($directory) 
     {
+        self::$db = Database_Initiator::Database_Initiate(DB_TYPE);
+
+        $this->working_directory = $directory;
         // Cleans and parses the URL
-        $url = this->parse_url();
+        $url = $this->parse_url();
         if ($this->get_controller($url[0])) 
         {
             unset($url[0]);
         }
 
-        require_once "../app/controllers/{$url[0]}.php";
+        require_once "../app/controllers/{$this->controller}.php";
         
         // Instantiates the controller
         $this->controller = new $this->controller;
 
-        if ($this->get_method($url[1]))
+        if (isset($url[1]) && $this->get_method($url[1]))
         {
             unset($url[1]);
         }
@@ -36,6 +52,7 @@ class Application
         {
             return [];
         }
+        // makes array
         return $request = explode('/', filter_var(rtrim($_GET['url'], '/'), FILTER_SANITIZE_URL));
     }
     private function get_controller(string $controller): bool 

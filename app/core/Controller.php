@@ -13,18 +13,59 @@ class Controller
      */
     protected function model(string $model): object 
     {
-        require_once '../app/models' . $model . '.php';
+        require_once "../app/models/$model.php";
         return new $model();
     }
 
     /**
-     * Summary of view
+     * TO:DO: change function name. A bit misleading
      * @param string $view
-     * @param mixed $data
      * @return void
      */
-    public function view(string $view, $data = []): void 
+    protected function view(string $view): void 
     {
-        require_once '../app/views/' . $view .'.php';
+        echo $view;
+    }
+
+    /**
+     * Summary of get_layout
+     * @param string $layout
+     * @return bool|string
+     */
+    public function get_layout(string $layout): bool|string 
+    {
+        ob_start();
+        require_once "../app/views/layout/$layout.php";
+        return ob_get_clean();
+    }
+
+    /**
+     * Summary of get_view
+     * @param string $view
+     * @param mixed $data
+     * @return bool|string
+     */
+    public function get_view(string $view, $data = []) : bool|string 
+    {
+        ob_start();
+        require_once "../app/views/$view.php";
+        return ob_get_clean();
+    }
+
+    /**
+     * It will replace all placeholders within the layout with datum
+     * @param array $data Datum to be injected
+     * @param string $layout Layout to use
+     * @return string 
+     */
+    public function set_placeholders(array $data, string $layout): string
+    {
+
+        $temporary_layout = $layout;
+        foreach(array_keys($data) as $key) 
+        {
+            $temporary_layout = str_replace("{{{$key}}}", $data[$key], $temporary_layout);
+        }
+        return $temporary_layout;
     }
 }
