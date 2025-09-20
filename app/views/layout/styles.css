@@ -2,6 +2,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  border: black solid 2px;
 }
 
 /*Insert sass here*/
@@ -31,3 +32,37 @@ img {
 }
 
 
+.header-main {
+  position:sticky;
+  top:0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: #f4f4f4;
+}
+
+.header-left, .header-right {
+  flex: 1;
+  padding: 10px;
+  background-color: #e2e2e2;
+  text-align: center;
+}
+
+
+.main-content-box {
+  display: flex;
+}
+
+.left-sidebar,
+.right-sidebar {
+  width: 20%;
+  background: #e2e2e2;
+}
+
+.main-content-real {
+  flex: 1;
+  background: #fff; 
+  min-width: 0;
+  margin: 0 20px 0 20px;
+}
