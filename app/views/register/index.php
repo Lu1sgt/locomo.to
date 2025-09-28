@@ -6,9 +6,8 @@
 <?=$data['ERROR']['email'] ?? ''?>
 <?php endif?>
 
-
 <div style="display: flex; width: 100%; height: 100vh; align-items: center; justify-content: center;">
-    <form action="/register" method="POST" novalidate style="display: flex; flex-direction: column; width: 15rem; height: 20rem; border-style: solid; border-width: 2px; border-color: black; padding: 1rem">
+    <form action="/register" method="POST" style="display: flex; flex-direction: column; width: 15rem; height: 20rem; border-style: solid; border-width: 2px; border-color: black; padding: 1rem">
         <label for="username">Username:</label>
         <input type="text" id="username" name="username" required />
 
@@ -25,5 +24,3 @@
         <a type="button" href="/login">Already have an account? Login.</a>
     </form>
 </div>
-
-
