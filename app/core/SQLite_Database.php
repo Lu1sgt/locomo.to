@@ -10,7 +10,8 @@ class SQLite_Database implements Database_Interface{
     {
         try {
             SQLite_Database::$table_construction = file_get_contents($path);
-            SQLite_Database::$db = new SQLite3($path);
+            SQLite_Database::$db = new SQLite3(Application::$working_directory."/app/db/dev.db");
+            SQLite_Database::$db->query(SQLite_Database::$table_construction);
         }
         catch (Exception $e) {
             echo "Failed: " . $e->getMessage();
