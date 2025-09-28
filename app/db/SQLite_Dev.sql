@@ -8,7 +8,6 @@ CREATE TABLE IF NOT EXISTS `Users`(
     `updated_at` datetime
 );
 
-
 CREATE TABLE IF NOT EXISTS `Posts`(
     `post_id` integer primary key autoincrement,
     `title` varchar(100) not null,
