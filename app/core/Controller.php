@@ -13,7 +13,7 @@ class Controller
      */
     protected function model(string $model): object 
     {
-        require_once "../app/models/$model.php";
+        require_once Application::$working_directory . "/app/models/$model.php";
         return new $model();
     }
 
@@ -22,7 +22,7 @@ class Controller
      * @param string $view
      * @return void
      */
-    protected function view(string $view): void 
+    public function view(string $view): void 
     {
         echo $view;
     }
@@ -35,7 +35,7 @@ class Controller
     public function get_layout(string $layout): bool|string 
     {
         ob_start();
-        require_once "../app/views/layout/$layout.php";
+        require_once Application::$working_directory . "/app/views/layout/$layout.php";
         return ob_get_clean();
     }
 
@@ -48,7 +48,7 @@ class Controller
     public function get_view(string $view, $data = []) : bool|string 
     {
         ob_start();
-        require_once "../app/views/$view.php";
+        require_once Application::$working_directory . "/app/views/$view";
         return ob_get_clean();
     }
 

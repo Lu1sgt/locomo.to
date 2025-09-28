@@ -2,15 +2,10 @@
 
 class Application 
 {
-    private $controller = 'home';
+    private $controller = '';
     private string $method = 'index';
     private array $params = [];
-
-    /**
-     * Not used yet. 
-     * @var  
-     */
-    private $working_directory;
+    public static $working_directory;
 
     /**
      * $db is a singleton. This is to prevent
@@ -21,27 +16,44 @@ class Application
 
     public function __construct($directory) 
     {
+        self::$working_directory = $directory;
         self::$db = Database_Initiator::Database_Initiate(DB_TYPE);
 
-        $this->working_directory = $directory;
         // Cleans and parses the URL
         $url = $this->parse_url();
+        
         if ($this->get_controller($url[0])) 
         {
             unset($url[0]);
         }
+        else {
 
-        require_once "../app/controllers/{$this->controller}.php";
+            /**
+             * TODO: Create a better 404 echo; 
+             */
+            self::not_found();
+        }
+
+        require_once self::$working_directory . "/app/controllers/{$this->controller}.php";
         
         // Instantiates the controller
         $this->controller = new $this->controller;
 
-        if (isset($url[1]) && $this->get_method($url[1]))
+        if (isset($url[1]))
         {
+            if (!$this->get_method($url[1]))
+            {
+                self::not_found();
+            }
             unset($url[1]);
         }
 
         $this->params = $url ? array_values($url) : [];
+
+        if (self::parameter_count($this->controller, $this->method) != count($this->params))
+        {
+            self::not_found();
+        }
         
         // Executes URL Request
         $this->controller->{$this->method}(...$this->params);
@@ -57,7 +69,12 @@ class Application
     }
     private function get_controller(string $controller): bool 
     {
-        if(file_exists("../app/controllers/$controller.php"))
+        if($controller == "" || $controller == "/")
+        {
+            $this->controller = 'home';
+            return true;
+        }
+        else if(file_exists(self::$working_directory . "/app/controllers/$controller.php"))
         {
 
             $this->controller = $controller;
@@ -67,11 +84,47 @@ class Application
     }
     private function get_method(string $method) 
     {
-        if(method_exists($this->controller, $method))
+        if(is_callable([$this->controller, $method]))
         {
             $this->method = $method;
             return true;
         }
         return false;
+    }
+
+    public static function session_destroy()
+    {
+        $_SESSION = [];
+
+        if (ini_get("session.use_cookies")) {
+            $params = session_get_cookie_params();
+            setcookie(session_name(), '', time() - 42000,
+        $params["path"], $params["domain"],
+        $params["secure"], $params["httponly"]
+            );
+        }
+        session_destroy();
+    }
+
+    public static function not_found()
+    {
+        $controller = new Controller();
+        $view = $controller->get_view("not_found/index.html");
+        $controller->view( $view);
+        http_response_code(404);
+        exit;
+    }
+
+    public static function redirect(string $url)
+    {
+        header("Location: $url");
+        exit;
+    }
+
+    public static function parameter_count(object $object, string $method)
+    {
+        $reflection = new ReflectionClass($object);
+        $method = $reflection->getMethod($method);
+        return $method->getNumberOfParameters();
     }
 }
