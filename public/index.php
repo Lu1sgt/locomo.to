@@ -26,5 +26,3 @@ require_once '../app/init.php';
  * App object
 */
 $app = new Application(dirname(__DIR__));
-
-//Application::session_destroy();
