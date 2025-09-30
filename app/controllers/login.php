@@ -55,7 +55,9 @@ class Login extends Controller
         {
             $data['ERROR']['username'] = 'USERNAME_DOES_NOT_EXIST!';
         }
-        else if (!User::password_authenticate($data['password'], $data['username']))
+        // Stupid cunt!!! I fucking got it all wrong, I swapped username with password even though
+        // I created and even documented the whole thing. I'm so fucking demented...
+        else if (!User::password_authenticate($data['username'], $data['password']))
         {
             $data['ERROR']['password'] = 'WRONG PASSWORD!';
         }

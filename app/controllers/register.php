@@ -20,9 +20,10 @@ class Register extends Controller
             $sanitized_data = $this->sanitized_validate();
 
             if (!array_key_exists('ERROR', $sanitized_data)) {
-                // registers users after validation, and redirects to home.
+                // registers users after validation, and redirects to home.\
+                
                 $user = new User($sanitized_data);
-                $user->register();            
+                $user->register();      
                 Application::session_destroy();
                 Application::redirect('/login');
             }

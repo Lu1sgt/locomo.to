@@ -40,7 +40,9 @@
 
     <div class="header-main">
       
-      <div class="header-left"> Header left side</div>
+      <div class="header-left"> Header left side
+        <button onClick="logout()">Logout</button>
+      </div>
       <div class="header-right">Header rIght side</div>
     </div>
 
@@ -58,6 +60,27 @@
       </div>
 
     </div>
+      <script>
+
+        function logout() {        
+            fetch('/home/logout', {
+            method: 'POST',
+            headers: {
+            'Content-Type': 'text/plain'
+            },
+            body: 'logout'}
+            )
+            .then(res => res.text())
+            .then(data => 
+            
+            {
+              console.log(data)
+              window.location.href = '/';
+            })
+            .catch(err => console.error('Error:', err));
+          
+          };
+      </script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.min.js" integrity="sha384-G/EV+4j2dNv+tEPo3++6LCgdCROaejBqfUeNjuKAiuXbjrxilcCdDz6ZAVfHWe1Y" crossorigin="anonymous"></script>
