@@ -16,20 +16,35 @@ class Home extends Controller
             'Content' => '',
             'Title' => 'Car'
         ];
+
+        $data = [
+            'username' => ''
+        ];
         //model
         
+        $data['username'] = $_SESSION['username'];
         // $user = $this->model('User');
 
         // view
         $layout = $this->get_layout("main");
-        $placeholder['Content'] = $this->get_view("home/index.php");
+        $placeholder['Content'] = $this->get_view("home/index.php", $data);
         $this->view($this->set_placeholders($placeholder, $layout));
     }    
 
     public function logout() : void 
     {
+        $body = file_get_contents("php://input");
+
+    if ($body === 'logout') {
+        // Do your logout logic (e.g. session_destroy(), etc.)
         Application::session_destroy();
+        // Return a response
         Application::redirect("/login");
+        exit;
+    } else {
+        http_response_code(400);
+        echo "Invalid request";
+    }
     }
 
     public function landingpage() : void {

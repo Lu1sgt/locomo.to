@@ -106,6 +106,7 @@ class User
         $result = Application::$db->search('Users', ['username'=> $username]);
         $row_count = 0;
         $row_gathered = [];
+
         while ($row = $result->fetchArray(SQLITE3_ASSOC))
         {
             $row_gathered = $row; 
@@ -126,6 +127,10 @@ class User
     public function register(): void
     {
         $user = $this->to_array();
+
+        // I forgot to unset 'account_id', the default value is '0' and if it already
+        // exists in the database, then it throws an error. 
+        unset($user['account_id']);
         Application::$db->create("Users", $user);
     }
 

@@ -1,8 +1,8 @@
 <?php
 
 /**
- Put here the code for landing page
+ * Put here the code for landing page
  */
 
- echo "hi jhan";
+ echo "hi {$data['username']}";
 ?>
