@@ -36,18 +36,34 @@ img {
   top:0;
   display: flex;
   justify-content: space-between;
-  align-items: center;
   padding: 10px 20px;
   background-color: #f4f4f4;
 }
 
-.header-left, .header-right {
+.header-left.header-right.header-middle {
   flex: 1;
+  width: fit-content;
   padding: 10px;
   background-color: #e2e2e2;
-  text-align: center;
 }
 
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.header-middle{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+ /*  width: 10vw;
+  height: 5vh; */
+ /*  background: #d4d4d4;
+  border-radius: 5px; */
+  
+}
 
 .main-content-box {
   display: flex;
