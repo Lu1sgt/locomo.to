@@ -36,7 +36,6 @@ We utilized MVC, OOP and other related Design Patterns for a clean and concise c
 - [ ] Improve parameter checking and model validation.
 
 ### 🐥 Frontend 🐥
-*Just Views and a wee bit of js*
 
 - [ ] Contact Us - Create page
 - [ ] Home - Landing page
