@@ -22,28 +22,46 @@
     </head>
     <body>
 
-<!-- <ul class="nav">
-  <li class="nav-item">
-    <a class="nav-link active" aria-current="page" href="#">Active</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" href="#">Link</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" href="#">Link</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link disabled" aria-disabled="true">Disabled</a>
-  </li>
-</ul> -->
+   
 
 
     <div class="header-main">
-      
-      <div class="header-left"> Header left side
-        <button onClick="logout()">Logout</button>
+
+      <div class="header-left"> 
+        <div class="header-logo">Insert Logo Here</div>
+        <div class="header-title">Locomotive</div>
       </div>
-      <div class="header-right">Header rIght side</div>
+
+      <div class="header-middle">
+        <div class="header-middle-search-icon">
+          <img src="/public/assets/search-icon.png" alt="Search Icon">
+        </div>
+        <div class="header-middle-search">
+          <input type="text" placeholder="Search...">
+          <button type="submit">Go</button>
+        </div>
+      </div>
+      
+      <div class="header-right">
+        <ul class="nav">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">Active</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Link</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Link</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link disabled" aria-disabled="true">Disabled</a>
+          </li>
+          <li>
+            <button onClick="logout()">Logout</button>
+          </li>
+        </ul>
+          
+      </div>
     </div>
 
     <div class="main-content-box">
