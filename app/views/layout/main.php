@@ -28,8 +28,8 @@
     <div class="header-main">
 
       <div class="header-left"> 
-        <div class="header-logo">Insert Logo Here</div>
-        <div class="header-title">Locomotive</div>
+        <div class="header-logo">LOGO</div>
+        <div class="header-title">Locomotive.to</div>
       </div>
 
       <div class="header-middle">
